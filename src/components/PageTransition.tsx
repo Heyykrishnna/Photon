@@ -29,7 +29,6 @@ export default function PageTransition({ children }: { children: ReactNode }) {
     <AnimatePresence mode="wait">
       <motion.div
         key={pathname}
-        // CRT Power On / Off effect for the entire layout
         initial={{ 
           opacity: 0, 
           scaleX: 0.05, 
@@ -50,15 +49,12 @@ export default function PageTransition({ children }: { children: ReactNode }) {
         }}
         transition={{
           duration: 0.7,
-          ease: [0.16, 1, 0.3, 1], // easeOutExpo
+          ease: [0.16, 1, 0.3, 1], 
         }}
         className="w-full min-h-screen relative origin-center bg-black"
       >
         <FrozenRouter>{children}</FrozenRouter>
 
-        {/* ── CRAZY DYSTOPIAN BROKEN OVERLAYS ── */}
-        
-        {/* Full Screen Noise Flash */}
         <motion.div
           initial={{ opacity: 1 }}
           animate={{ opacity: 0 }}
@@ -68,7 +64,6 @@ export default function PageTransition({ children }: { children: ReactNode }) {
           style={{ backgroundImage: `url(${NoiseImg})`, backgroundSize: "cover" }}
         />
 
-        {/* Giant Text Artifacts */}
         <motion.div
            initial={{ opacity: 1, x: "-100%", skewX: "40deg" }}
            animate={{ opacity: 0, x: "100%", skewX: "-40deg" }}
@@ -89,7 +84,6 @@ export default function PageTransition({ children }: { children: ReactNode }) {
           RECALIBRATING_GRID... [0x992B]
         </motion.div>
 
-        {/* Aggressive RGB Splits & VHS Jitter Blocks */}
         <motion.div 
           initial={{ opacity: 1 }}
           animate={{ opacity: 0, display: "none" }}
@@ -97,19 +91,15 @@ export default function PageTransition({ children }: { children: ReactNode }) {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="fixed inset-0 z-9999 pointer-events-none overflow-hidden flex flex-col justify-between"
         >
-          {/* Top Block */}
           <div className="h-[15%] w-full bg-cyan-500 saturate-[5] mix-blend-screen translate-x-[3vw] animate-[vibrate_0.02s_infinite]" />
           
-          {/* Middle Random Slices */}
           <div className="h-[2px] w-full bg-white shadow-[0_0_15px_white] translate-y-[-10vh] animate-[flash_0.015s_infinite]" />
           <div className="h-[5%] w-full bg-white/20 mix-blend-overlay backdrop-invert animate-[flash_0.05s_infinite_reverse]" />
           <div className="h-[2px] w-full bg-red-500 shadow-[0_0_20px_red] translate-y-[20vh] animate-[vibrate_0.1s_infinite]" />
 
-          {/* Bottom Block */}
           <div className="h-[25%] w-full bg-red-600 saturate-[5] mix-blend-screen -translate-x-[4vw] animate-[vibrate_0.04s_infinite_reverse]" />
         </motion.div>
 
-        {/* High-speed scanline that drops like a bomb */}
         <motion.div
           initial={{ top: "-20%", height: "20%" }}
           animate={{ top: "120%", height: "0%" }}
@@ -118,7 +108,6 @@ export default function PageTransition({ children }: { children: ReactNode }) {
           className="fixed inset-x-0 z-10002 bg-cyan-200/30 mix-blend-exclusion shadow-[0_0_50px_rgba(255,255,255,0.8)] pointer-events-none"
         />
         
-        {/* Extreme invert flash on mount/unmount */}
         <motion.div
           initial={{ opacity: 1 }}
           animate={{ opacity: 0 }}
