@@ -210,12 +210,7 @@ export function useHeroCanvas(
     };
 
     const drawTypewriter = (W: number, H: number) => {
-      ctx.font = '18px "Space Mono", monospace';
-      ctx.textAlign = 'left';
       ctx.textBaseline = 'top';
-      
-      const colWidth = Math.min(W * 0.3, 400);
-      const lineHeight = 30;
       
       // Update state
       quantumState.forEach((line, i) => {
