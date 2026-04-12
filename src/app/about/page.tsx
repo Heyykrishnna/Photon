@@ -3,7 +3,10 @@ import { Scissors, Phone } from "lucide-react";
 
 export default function AboutPage() {
   return (
-    <div className="w-full max-w-[100vw] min-h-screen bg-[#F4F2EB] text-[#2c2820] font-retro-serif overflow-x-hidden relative z-10 selection:bg-[#E58B43] selection:text-white">
+    <div
+      className="w-full max-w-[100vw] h-screen overflow-y-auto overflow-x-hidden touch-pan-y bg-[#F4F2EB] text-[#2c2820] font-retro-serif relative z-10 selection:bg-[#E58B43] selection:text-white"
+      style={{ WebkitOverflowScrolling: "touch" }}
+    >
       <div className="fixed inset-0 pointer-events-none z-100 opacity-40 mix-blend-multiply" style={{ backgroundImage: "url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.8%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E')" }}></div>
       <div className="fixed inset-0 pointer-events-none z-50 opacity-10 crt-scanlines mix-blend-color-burn"></div>
 
