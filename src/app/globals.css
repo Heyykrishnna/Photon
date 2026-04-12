@@ -172,6 +172,21 @@ body {
   60% { transform: translateX(8%); clip-path: inset(54% 0 7% 0); }
 }
 
+@keyframes scroll-vertical {
+  from { transform: translateY(0); }
+  to { transform: translateY(calc(-50% - 1rem)); }
+}
+
+.animate-scroll-vertical {
+  animation: scroll-vertical 30s linear infinite;
+}
+.animate-scroll-vertical-fast {
+  animation: scroll-vertical 22s linear infinite;
+}
+.animate-scroll-vertical-reverse {
+  animation: scroll-vertical 26s linear infinite reverse;
+}
+
 @keyframes glitch-h-jump {
   0% { transform: translateX(0); }
   10% { transform: translateX(-10px); }

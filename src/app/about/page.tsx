@@ -3,58 +3,58 @@ import { Scissors, Phone } from "lucide-react";
 
 export default function AboutPage() {
   return (
-    <div className="w-full min-h-screen bg-[#F4F2EB] text-[#2c2820] font-retro-serif overflow-hidden relative z-10 selection:bg-[#E58B43] selection:text-white">
+    <div className="w-full max-w-[100vw] min-h-screen bg-[#F4F2EB] text-[#2c2820] font-retro-serif overflow-x-hidden relative z-10 selection:bg-[#E58B43] selection:text-white">
       {/* Global Noise & Scanline Overlay */}
-      <div className="fixed inset-0 pointer-events-none z-[100 opacity-[0.4] mix-blend-multiply" style={{ backgroundImage: "url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.8%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E')" }}></div>
-      <div className="fixed inset-0 pointer-events-none z-90 opacity-10 crt-scanlines mix-blend-color-burn"></div>
+      <div className="fixed inset-0 pointer-events-none z-100 opacity-40 mix-blend-multiply" style={{ backgroundImage: "url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.8%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E')" }}></div>
+      <div className="fixed inset-0 pointer-events-none z-50 opacity-10 crt-scanlines mix-blend-color-burn"></div>
 
       <div className="max-w-[1300px] mx-auto px-6 pt-40 pb-16 text-center">
         <h1 className="text-5xl md:text-[5.5rem] leading-[1.05] mb-12 max-w-5xl mx-auto font-medium tracking-tight relative group">
-          <span className="relative z-10">Making Digital Storytelling More Playful, Powerful, and Alive</span>
+          <span className="relative z-10">We are not building a festival, we are engineering a new reality where art, technology, and human connection collide.</span>
           {/* Intense Glitch layers on hover */}
-          <span className="absolute inset-0 text-[#D84B4B] -translate-x-1.5 translate-y-1.5 opacity-0 group-hover:opacity-100 z-0 transition-none animate-shatter mix-blend-multiply" aria-hidden="true">Making Digital Storytelling More Playful, Powerful, and Alive</span>
-          <span className="absolute inset-0 text-[#4B7CD8] translate-x-1.5 -translate-y-1.5 opacity-0 group-hover:opacity-100 z-0 transition-none animate-shatter mix-blend-multiply delay-75" aria-hidden="true" style={{ animationDirection: 'reverse' }}>Making Digital Storytelling More Playful, Powerful, and Alive</span>
+          <span className="absolute inset-0 text-[#D84B4B] -translate-x-1.5 translate-y-1.5 opacity-100 z-0 transition-none animate-shatter mix-blend-multiply" aria-hidden="true">We are not building a festival, we are engineering a new reality where art, technology, and human connection collide.</span>
+          <span className="absolute inset-0 text-[#4B7CD8] translate-x-1.5 -translate-y-1.5 opacity-100 z-0 transition-none animate-shatter mix-blend-multiply delay-75" aria-hidden="true" style={{ animationDirection: 'reverse' }}>We are not building a festival, we are engineering a new reality where art, technology, and human connection collide.</span>
         </h1>
 
         <div className="relative w-full aspect-video md:aspect-[2.4/1] bg-[#E8E6DF] rounded-sm overflow-hidden mb-16 shadow-[0_0_20px_rgba(0,0,0,0.05)] border border-[#E0DED7] group cursor-pointer">
-           <div className="absolute inset-0 z-20 glitch-slice-layer opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none mix-blend-screen bg-[#D84B4B]/10"></div>
+           <div className="absolute inset-0 z-20 glitch-slice-layer opacity-100 transition-opacity duration-300 pointer-events-none mix-blend-screen bg-[#D84B4B]/10"></div>
            <Image 
              src="https://ik.imagekit.io/yatharth/CRAXYY.png" 
              alt="Office Team" 
              fill 
-             className="object-cover object-top md:object-[50%_40%] mix-blend-multiply opacity-95 grayscale-30 sepia-30 contrast-110 group-hover:grayscale-50 group-hover:contrast-125 transition-all duration-300" 
+             className="object-cover object-top md:object-[50%_40%] mix-blend-multiply opacity-95 grayscale-[30%] sepia-[30%] contrast-110 group-hover:grayscale-[50%] group-hover:contrast-125 transition-all duration-300" 
            />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-left text-[1.15rem] leading-[1.75] tracking-tight">
            <div className="pr-4">
              <p className="mb-6">
-               <strong>Shader is a creative development studio specialized in building interactive 3D and AI solutions for the web.</strong> Serious about business, based in Sweden, and working with brands, agencies and designers worldwide. Plugged into the future.
+               <strong>Photon is the bleeding-edge tech sub-fest of Neutron, the ultimate cultural and technology festival.</strong> Engineered by the brilliant students at the Newton School of Technology, we are redefining what a student-led tech fest can be. Plugged straight into the future.
              </p>
              <p>
-               While we're a small team of creative engineers, we have a hand-picked network of collaborators: designers, 3D artists, copywriters, animators, and creative technologists, ready to plug in with an array of capabilities.
+               While Neutron sets the massive overarching stage, Photon is our dedicated playground for hardcore tech, chaotic creativity, and next-generation engineering. We bring together developers, designers, and digital artists to break the rules.
              </p>
            </div>
            <div className="pr-4">
              <p className="mb-6">
-               This modular approach means we can scale and adapt to each challenge. Whether it's a WebGL experiment, an interactive product visualization, a mobile app, or an AI-driven experience, we help bold brands stand out across every screen.
+               This targeted approach means we can dive deeper into every challenge. Whether it's rapid hackathons, algorithm battles, chaotic hardware builds, or AI-driven experiences, we help the boldest technical minds stand out.
              </p>
              <p className="mb-6">
-               We build storytelling platforms that demand attention and reward curiosity. We push digital mediums to places you haven't seen before, and have fun doing it.
+               We build event platforms that demand attention and reward raw curiosity. We push digital and physical mediums to places you haven't seen before, and have fun breaking things along the way.
              </p>
              <p>
-               Beyond code, we offer 3D design and animation, UI and motion design, concepts and digital strategy, full-stack development, and creative consulting.
+               Beyond standard competitions, we offer deep dives into 3D design, brutalist UI/UX challenges, algorithmic problem solving, and full-stack battlegrounds.
              </p>
            </div>
            <div className="relative">
              <p className="mb-6">
-               Whether it's prototyping an idea, launching an augmented reality experience, or bringing high-fidelity visuals to life, Shader bridges the gap between creative ambition and technical execution. Our process is hands-on, collaborative, and tailored for teams that value both craft and innovation.
+               Whether it's prototyping a wild idea overnight, launching an augmented reality experience, or bringing high-fidelity visual concepts to life, Photon bridges the gap between raw ambition and technical execution. Our events are hands-on, highly collaborative, and relentlessly competitive.
              </p>
              <p className="mb-6 z-10 relative">
-               We combine technical expertise with a designer's eye, ensuring that every interaction feels natural and every pixel is perfectly placed.
+               We combine technical expertise with a hacker's mindset, ensuring that every bracket is intense, and every line of code matters.
              </p>
              <p className="font-bold text-[#332e26] z-10 relative">
-               We're not your regular IT department. We don't troubleshoot printers.
+               We're not your regular boring college committee. We do not troubleshoot printers.
              </p>
            </div>
         </div>
@@ -63,114 +63,121 @@ export default function AboutPage() {
       <RainbowDivider />
 
       <div className="w-full overflow-hidden pt-32 pb-48 relative min-h-[60vh] flex flex-col justify-center">
-        
-        {/* Background elements (people pointing) */}
-        <div className="hidden md:block absolute left-[-2%] top-1/2 -translate-y-1/2 w-[350px] h-[450px] z-0 opacity-80 mix-blend-multiply grayscale-[35%] sepia-[25%] pointer-events-none scale-x-[-1] animate-[pulse_5s_ease-in-out_infinite]">
-           <Image src="/images/retro_pointing_left.png" fill className="object-contain object-left" alt="" />
-        </div>
-        <div className="hidden md:block absolute right-[-2%] top-1/2 -translate-y-1/2 w-[350px] h-[450px] z-0 opacity-80 mix-blend-multiply grayscale-[35%] sepia-[25%] pointer-events-none animate-[pulse_5s_ease-in-out_infinite_1.5s]">
-           <Image src="/images/retro_pointing_right.png" fill className="object-contain object-right" alt="" />
-        </div>
 
-        <div className="max-w-[1000px] mx-auto px-6 text-center z-10 relative">
-          <h2 className="text-5xl md:text-7xl mb-8 font-medium">A Showcase of<br/>Valued Sponsors</h2>
-          <p className="max-w-2xl mx-auto text-[1.1rem] text-[#4d473d] mb-24 leading-relaxed">
-            We have had the benefit of working with a large pool of great clients throughout the years. 
-            Our partnerships ranges from some of the most recognizable Swedish brands to international innovators.
+        <div className="max-w-[1400px] mx-auto px-6 text-center z-10 relative">
+          <h2 className="text-5xl md:text-7xl mb-8 font-medium">The Neutron<br/>Experience.</h2>
+          <p className="max-w-2xl mx-auto text-[1.1rem] text-[#4d473d] mb-16 leading-relaxed">
+            We have had the privilege of witnessing massive crowds and raw energy at Neutron events over the years. 
+            From intense coding battles to unforgettable cultural nights, this is where the Newton School of Technology family thrives.
           </p>
           
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-12 gap-y-20 items-center justify-items-center opacity-85 mix-blend-multiply">
-            <span className="font-extrabold text-4xl font-sans -tracking-widest">ICA</span>
-            <span className="font-serif italic text-2xl leading-tight">Region<br/>Östergötland</span>
-            <span className="font-bold text-2xl font-sans uppercase tracking-[0.15em] relative after:content-[''] after:absolute after:bottom-[-2px] after:left-0 after:w-full after:h-[2px] after:bg-[#2c2820] before:content-[''] before:absolute before:top-[-2px] before:left-0 before:w-full before:h-[2px] before:bg-[#2c2820] py-1">PEPSI</span>
-            <span className="font-bold text-3xl flex items-center justify-center font-sans tracking-[-0.05em]"><span className="w-8 h-8 flex items-center justify-center rounded-full bg-[#2c2820] mr-2 text-white text-[10px]">&infin;</span>spp</span>
-            <span className="font-bold text-[32px] font-sans tracking-tight leading-none text-center">
-              RI.<br/>SE
-            </span>
-            <span className="font-serif italic font-bold text-4xl">Cloetta</span>
-            <span className="font-sans text-2xl uppercase tracking-[0.2em] relative"><span className="font-bold text-3xl">SON</span><br/><span className="text-[7px] tracking-[0] whitespace-nowrap absolute -bottom-3 left-1/2 -translate-x-1/2 font-sans font-normal opacity-60">NORRKÖPINGS SYMFONIORKESTER</span></span>
-            <span className="font-bold text-[32px] font-sans tracking-tighter leading-none text-center">
-              SUICIDE<br/>ZERO
-            </span>
-            <span className="font-sans font-bold text-3xl capitalize tracking-tighter">Scandic</span>
-            <span className="font-sans font-bold text-[28px] lowercase tracking-tight relative flex flex-row items-center"><div className="flex gap-1 mr-2"><div className="w-3 h-3 rounded-full border border-black/80 flex items-center justify-center"><div className="w-1.5 h-1.5 bg-black/80 rounded-full"></div></div><div className="w-3 h-3 rounded-full border border-black/80"></div></div>universeum</span>
-            <span className="font-sans font-bold text-2xl uppercase tracking-widest text-center">stadium &reg;</span>
-            <span className="font-sans font-extrabold text-[1.1rem] leading-none text-left tracking-tight border-l-8 border-[#2c2820] pl-3 py-1">GARAGEPORT<br/>EXPERTEN</span>
+          <div className="w-full h-[650px] overflow-hidden flex gap-6 md:gap-8 relative" style={{ WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)' }}>
+             <div className="flex-1 flex flex-col gap-6 md:gap-8 animate-scroll-vertical w-1/2 md:w-1/3">
+                {[
+                  "https://neutron-organization.vercel.app/Gallery/ARS06099.JPG", "/images/retro_shrugging_guy.png", "https://neutron-organization.vercel.app/Gallery/ARS07327.JPG", "/images/retro_pointing_left.png", 
+                  "https://ik.imagekit.io/yatharth/ARS03049.JPG", "/images/retro_keyboard_macro.png", "https://neutron-organization.vercel.app/Gallery/ARS07087.JPG", "/images/retro_watercooler.png",
+                  "https://ik.imagekit.io/yatharth/ARS06750.JPG", "/images/retro_office_team.png", "https://neutron-organization.vercel.app/Gallery/Gaurav.webp", "/images/retro_floppy_disks.png",
+                  "https://ik.imagekit.io/yatharth/ARS06494.JPG", "/images/retro_pointing_right.png", "https://neutron-organization.vercel.app/Gallery/ARS06503.JPG", "/images/retro_computers_chart.png",
+                  "https://neutron-organization.vercel.app/Gallery/ARS06099.JPG", "/images/retro_shrugging_guy.png", "https://neutron-organization.vercel.app/Gallery/ARS07327.JPG", "/images/retro_pointing_left.png", 
+                  "https://ik.imagekit.io/yatharth/ARS03049.JPG", "/images/retro_keyboard_macro.png", "https://neutron-organization.vercel.app/Gallery/ARS07087.JPG", "/images/retro_watercooler.png",
+                  "https://ik.imagekit.io/yatharth/ARS06750.JPG", "/images/retro_office_team.png", "https://neutron-organization.vercel.app/Gallery/Gaurav.webp", "/images/retro_floppy_disks.png"
+                ].map((src, i) => (
+                  <div key={`col1-${i}`} className="bg-[#EAE8E0] p-3 md:p-5 border-2 border-[#2c2820] shadow-[6px_6px_0_rgba(44,40,32,1)] group cursor-crosshair shrink-0">
+                     <div className="relative w-full aspect-auto overflow-hidden bg-black/10 glitch-slice-layer">
+                        <div className="absolute inset-0 z-0 bg-[#E0DED7] animate-pulse opacity-50"></div>
+                        <img src={src} className="relative z-10 w-full h-auto min-h-[200px] object-cover mix-blend-multiply grayscale-[35%] sepia-[20%] contrast-[1.1] group-hover:grayscale-0 group-hover:sepia-[5%] group-hover:contrast-[1.2] transition-all duration-300" alt={`Gallery item ${i}`} loading="lazy" />
+                     </div>
+                  </div>
+                ))}
+             </div>
+             <div className="flex-1 flex flex-col gap-6 md:gap-8 animate-scroll-vertical-reverse -mt-[450px] w-1/2 md:w-1/3">
+                {[
+                  "/images/retro_floppy_disks.png", "https://ik.imagekit.io/yatharth/ARS06494.JPG", "/images/retro_pointing_right.png", "https://neutron-organization.vercel.app/Gallery/ARS06503.JPG",
+                  "/images/retro_office_team.png", "https://neutron-organization.vercel.app/Gallery/Gaurav.webp", "/images/retro_watercooler.png", "https://ik.imagekit.io/yatharth/ARS06750.JPG",
+                  "/images/retro_pointing_left.png", "https://neutron-organization.vercel.app/Gallery/ARS07327.JPG", "/images/retro_shrugging_guy.png", "https://neutron-organization.vercel.app/Gallery/ARS06099.JPG",
+                  "/images/retro_computers_chart.png", "https://ik.imagekit.io/yatharth/ARS03049.JPG", "/images/retro_keyboard_macro.png", "https://neutron-organization.vercel.app/Gallery/ARS07087.JPG",
+                  "/images/retro_floppy_disks.png", "https://ik.imagekit.io/yatharth/ARS06494.JPG", "/images/retro_pointing_right.png", "https://neutron-organization.vercel.app/Gallery/ARS06503.JPG",
+                  "/images/retro_office_team.png", "https://neutron-organization.vercel.app/Gallery/Gaurav.webp", "/images/retro_watercooler.png", "https://ik.imagekit.io/yatharth/ARS06750.JPG",
+                  "/images/retro_pointing_left.png", "https://neutron-organization.vercel.app/Gallery/ARS07327.JPG", "/images/retro_shrugging_guy.png", "https://neutron-organization.vercel.app/Gallery/ARS06099.JPG"
+                ].map((src, i) => (
+                  <div key={`col2-${i}`} className="bg-[#EAE8E0] p-3 md:p-5 border-2 border-dashed border-[#2c2820] shadow-[3px_3px_0_rgba(44,40,32,1)] group cursor-crosshair shrink-0">
+                     <div className="relative w-full aspect-auto overflow-hidden bg-black/10 vhs-flicker-layer">
+                        <div className="absolute inset-0 z-0 bg-[#E0DED7] animate-pulse opacity-50"></div>
+                        <img src={src} className="relative z-10 w-full h-auto min-h-[250px] object-cover mix-blend-multiply grayscale-[25%] sepia-[25%] contrast-[1.05] group-hover:grayscale-[5%] group-hover:sepia-0 transition-all duration-300" alt={`Gallery item ${i}`} loading="lazy" />
+                     </div>
+                  </div>
+                ))}
+             </div>
+             <div className="hidden md:flex flex-1 flex-col gap-6 md:gap-8 animate-scroll-vertical-fast w-1/3">
+                {[
+                  "https://neutron-organization.vercel.app/Gallery/Gaurav.webp", "/images/retro_keyboard_macro.png", "https://ik.imagekit.io/yatharth/ARS06494.JPG", "/images/retro_pointing_left.png",
+                  "/images/retro_office_team.png", "https://ik.imagekit.io/yatharth/ARS06750.JPG", "/images/retro_watercooler.png", "https://neutron-organization.vercel.app/Gallery/ARS07087.JPG",
+                  "https://ik.imagekit.io/yatharth/ARS03049.JPG", "/images/retro_pointing_right.png", "https://neutron-organization.vercel.app/Gallery/ARS07327.JPG", "/images/retro_shrugging_guy.png", 
+                  "https://neutron-organization.vercel.app/Gallery/ARS06099.JPG", "/images/retro_floppy_disks.png", "https://neutron-organization.vercel.app/Gallery/ARS06503.JPG", "/images/retro_computers_chart.png",
+                  "https://neutron-organization.vercel.app/Gallery/Gaurav.webp", "/images/retro_keyboard_macro.png", "https://ik.imagekit.io/yatharth/ARS06494.JPG", "/images/retro_pointing_left.png",
+                  "/images/retro_office_team.png", "https://ik.imagekit.io/yatharth/ARS06750.JPG", "/images/retro_watercooler.png", "https://neutron-organization.vercel.app/Gallery/ARS07087.JPG",
+                  "https://ik.imagekit.io/yatharth/ARS03049.JPG", "/images/retro_pointing_right.png", "https://neutron-organization.vercel.app/Gallery/ARS07327.JPG", "/images/retro_shrugging_guy.png"
+                ].map((src, i) => (
+                  <div key={`col3-${i}`} className="bg-[#F4F2EB] p-3 md:p-5 border-2 border-[#2c2820] shadow-[-6px_6px_0_rgba(44,40,32,1)] group cursor-crosshair shrink-0">
+                     <div className="relative w-full aspect-auto overflow-hidden bg-black/10 glitch-slice-layer">
+                        <div className="absolute inset-0 z-0 bg-[#E0DED7] animate-pulse opacity-50"></div>
+                        <img src={src} className="relative z-10 w-full h-auto min-h-[200px] object-cover mix-blend-multiply grayscale-[30%] sepia-[40%] contrast-[1.1] group-hover:grayscale-[5%] group-hover:sepia-[10%] transition-all duration-300" alt={`Gallery item ${i}`} loading="lazy" />
+                     </div>
+                  </div>
+                ))}
+             </div>
           </div>
         </div>
       </div>
 
       <RainbowDivider />
 
-      <div className="w-full relative mt-0 bg-[#EAE8E0] shadow-[inset_0_-40px_80px_rgba(0,0,0,0.15)] overflow-hidden min-h-[50vh] flex flex-col justify-end items-center border-[2px] border-x-0 border-y-[#2c2820]">
-        {/* Subtle dot pattern over bg */}
-        <div className="absolute inset-0 z-0 opacity-[0.15] bg-[radial-gradient(#2c2820_1.5px,transparent_1.5px)] [background-size:24px_24px]"></div>
-        
-        {/* Center Analytic Image container perfectly layered */}
-        <div className="relative w-full max-w-[1000px] h-[40vh] z-10 group cursor-crosshair vhs-flicker-layer mb-6">
-           <div className="absolute inset-0 pointer-events-none z-30 glitch-slice-layer opacity-0 group-hover:opacity-100 transition-opacity"></div>
-           {/* Using raw HTML img is safer for external non-configured domains */}
-           <img 
-               src="https://ik.imagekit.io/yatharth/Analytics.png" 
-               className="absolute inset-0 w-full h-full object-contain object-bottom mix-blend-multiply grayscale-[15%] sepia-[30%] contrast-110 drop-shadow-[0_15px_30px_rgba(0,0,0,0.15)] group-hover:grayscale-0 group-hover:sepia-0 group-hover:contrast-[1.15] transition-all duration-300" 
-               alt="Retro Tech Dashboard" 
-           />
-           {/* Live recording indicator */}
-           <div className="absolute top-4 left-4 bg-[#D84B4B] font-mono text-[10px] text-white px-3 py-1 uppercase tracking-widest font-bold vhs-flicker-layer rounded-sm shadow-md z-40 hidden group-hover:flex items-center gap-2">
-             <div className="w-2 h-2 rounded-full bg-white animate-ping"></div> REC
-           </div>
-        </div>
-        
-        {/* Dark gradient to blend the top edge of image slightly */}
-        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#F4F2EB] to-transparent z-20 pointer-events-none"></div>
-      </div>
-
-      {/* Shred This Thing Section */}
-      <div className="w-full overflow-visible relative">
-        <div className="max-w-[1300px] mx-auto px-6 pt-32 pb-0 flex flex-col md:flex-row items-center justify-between gap-12 relative z-10">
+      <div className="w-full overflow-visible relative pb-32">
+        <div className="max-w-[1300px] mx-auto px-6 pt-32 pb-16 flex flex-col md:flex-row items-center justify-between gap-12 relative z-10">
+          
           <div className="flex-1 max-w-[650px] shrink-0 pt-10 relative z-20">
             <h2 className="text-[4rem] md:text-[5.5rem] leading-[1.05] font-medium tracking-[-0.02em] text-[#332e26] relative group">
               <span className="relative z-10 transition-transform duration-300 group-hover:-translate-y-2 inline-block">Had Enough<br/>Reading? Let's<br/>Shred This Thing.</span>
               <span className="absolute inset-0 text-[#D84B4B] -translate-x-1.5 translate-y-2 opacity-0 group-hover:opacity-100 z-0 transition-none animate-shatter mix-blend-multiply pointer-events-none" aria-hidden="true">Had Enough<br/>Reading? Let's<br/>Shred This Thing.</span>
               <span className="absolute inset-0 text-[#4B7CD8] translate-x-1.5 -translate-y-2 opacity-0 group-hover:opacity-100 z-0 transition-none animate-shatter mix-blend-multiply delay-75 pointer-events-none" aria-hidden="true" style={{ animationDirection: 'reverse' }}>Had Enough<br/>Reading? Let's<br/>Shred This Thing.</span>
             </h2>
-          <div className="text-[1.2rem] leading-relaxed text-[#403a30] space-y-8">
-            <p>
-              In today's fast-paced corporate landscape, you need a partner who understands the bottom line. 
-              At Shader, we engineer success through strategic alliances and mutual profitability. 
-              Our team is ready to synergize with your organization, unlock new verticals, and maximize your digital ROI. 
-              We don't just close deals; we deliver results that compound.
-            </p>
-            <p>
-              We leverage state-of-the-art technology to give your brand a decisive competitive advantage. 
-              Whether disrupting the market with paradigm-shifting 3D experiences or streamlining operations with cutting-edge AI, 
-              we provide turnkey solutions that scale. We merge high-performance engineering with executive-level design 
-              to build assets that appreciate your brand value.
-            </p>
-            <p className="font-semibold text-[#2c2820]">
-              Ready to take your enterprise to the next level? Don't waste valuable time. Review our portfolio, crunch the numbers, 
-              and you'll see the trajectory points one way: up. Pick up the phone, send a fax, or schedule a consultation. 
-              The future of your business is waiting. Let's execute.
-            </p>
+            <div className="text-[1.2rem] leading-relaxed text-[#403a30] space-y-8 mt-12">
+              <p>
+                In today's fast-paced tech landscape, you need an arena that pushes your limits to the absolute maximum. 
+                At Photon, we engineer chaos through brutal hackathons, algorithmic showdowns, and next-level tech battles. 
+                Powered by the massive scale of Neutron, we are ready to overclock your brain, unlock hidden potentials, and maximize your raw output.
+              </p>
+              <p>
+                We leverage the vibrant ecosystem of the Newton School of Technology to give you the ultimate competitive playground. 
+                Whether you're disrupting the norm with paradigm-shifting AI solutions or just trying to survive an overnight coding sprint, 
+                we provide the pizza, the caffeine, and the arena. We merge high-performance engineering with sleep-deprived creativity.
+              </p>
+              <p className="font-semibold text-[#2c2820]">
+                Ready to take your skills to the next dimension? Don't waste valuable time reading any more of this corporate-sounding jargon. 
+                Review our competitions, crunch the algorithms, and prepare for battle. The future of tech is waiting for you to conquer it at Neutron. Let's execute.
+              </p>
+            </div>
           </div>
-          <div className="relative h-[480px] md:h-[600px] w-full flex-1 flex justify-end items-end group cursor-pointer mt-12 md:mt-0 z-10 md:absolute md:right-0 md:bottom-0">
-             <div className="absolute inset-0 z-20 glitch-slice-layer opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none mix-blend-screen bg-[#D84B4B]/10"></div>
+          
+          <div className="relative h-[450px] md:h-[550px] w-full md:w-[400px] flex-none group cursor-wait mt-12 md:mt-0 z-10 md:absolute md:right-2 md:bottom-16 overflow-hidden border-2 border-[#2c2820] shadow-[-8px_8px_0_rgba(44,40,32,1)] bg-[#EAE8E0] rotate-3 hover:rotate-0 transition-transform duration-500">
+             <div className="absolute inset-0 z-20 glitch-slice-layer opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none mix-blend-screen bg-[#D84B4B]/20"></div>
              <img 
-               src="/images/retro_shrugging_guy.png" 
-               alt="Shrugging Coworker" 
-               className="object-contain object-bottom h-full drop-shadow-[0_20px_40px_rgba(0,0,0,0.15)] mix-blend-multiply grayscale-[15%] sepia-[25%] contrast-[1.05] group-hover:grayscale-[35%] group-hover:contrast-[1.15] transition-all duration-500 scale-x-[-1]" 
+               src="https://ik.imagekit.io/yatharth/ARS06750.JPG?updatedAt=1774806404575" 
+               alt="Photon Event Action" 
+               className="object-cover object-center w-full h-full mix-blend-multiply grayscale-[25%] sepia-[25%] contrast-[1.1] group-hover:grayscale-0 group-hover:sepia-0 group-hover:contrast-[1.2] transition-all duration-500" 
              />
           </div>
+
         </div>
       </div>
-    </div>
+
     </div>
   )
 }
 
 function RainbowDivider() {
   return (
-    <div className="w-full flex justify-center py-6">
+    <div className="w-full flex justify-center py-6 overflow-hidden">
       <div className="w-[120%] flex flex-col rotate-[-0.2deg] shadow-sm opacity-90 mx-[-10%] mix-blend-multiply">
         <div className="w-full h-[5px] bg-[#D84B4B]"></div>
         <div className="w-full h-[5px] bg-[#E58B43]"></div>
