@@ -174,7 +174,6 @@ export function useHeroCanvas(
         let ripple = 0;
         
         if (beam.isZigZag) {
-          // Smoothed frequency (Math.PI * 3 instead of 6) and slowed moveSpeed contribution (* 0.4)
           ripple = Math.sin(beam.amplitude * 0.12 * frac * Math.PI * 3 + moveSpeed * 0.4 + beam.phaseOffset) * beam.amplitude * Math.pow(frac, 0.8) * 3;
         } else {
           ripple = Math.sin(frac * Math.PI * 1.4 - moveSpeed * 1.0 + beam.phaseOffset) * beam.amplitude * Math.pow(frac, 1.25);
