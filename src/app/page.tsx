@@ -21,18 +21,17 @@ export default function Home() {
     router.prefetch('/competitions');
 
     const renderLoop = () => {
-      currentZoom.current += (targetZoom.current - currentZoom.current) * 0.15; 
+      currentZoom.current += (targetZoom.current - currentZoom.current) * 0.05; 
       const z = currentZoom.current;
 
       if (containerRef.current) {
         const zoomPhase = Math.pow(z, 2.2);
-        const scale = 1 + zoomPhase * 100; // Deep dive into the photon
-        
+        const scale = 1 + zoomPhase * 100;
         containerRef.current.style.transform = `scale(${scale})`;
         
         const g = Math.max(0, (z - 0.25) / 0.75); 
         containerRef.current.style.setProperty('--g-intense', g.toFixed(3));
-      }
+      } 
 
       if (z > 0.88 && !isNavigating) {
         isNavigating = true;
@@ -48,7 +47,7 @@ export default function Home() {
           currentZoom.current = 0;
           targetZoom.current = 0;
           isNavigating = false;
-        }, 1500);
+        }, 3500); // Increased by 2 seconds (was 1500)
       }
 
       animationFrameId = requestAnimationFrame(renderLoop);
@@ -188,7 +187,7 @@ export default function Home() {
         className="fixed inset-0 w-full h-full bg-black overflow-hidden"
         style={{ willChange: 'transform' }}
       >
-        <HeroScene />
+        <HeroScene scrollRef={currentZoom} />
 
         <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 100 }}>
           <Noise patternAlpha={12} patternRefreshInterval={2} patternSize={1000} />

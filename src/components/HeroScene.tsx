@@ -105,6 +105,7 @@ export function useHeroCanvas(
   canvasRef: React.RefObject<HTMLCanvasElement | null>,
   beamsRef: React.MutableRefObject<Beam[]>,
   onBeamHover: (beam: Beam | null, mx: number, my: number) => void,
+  scrollRef: React.RefObject<number>,
 ) {
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -251,6 +252,75 @@ export function useHeroCanvas(
       
       ctx.globalAlpha = 1;
     };
+    
+    // Magnetic lines logic
+    const drawMagneticField = (W: number, H: number, scroll: number) => {
+      const cx = W / 2;
+      const cy = H / 2;
+      const count = 40;
+      const lines = 12;
+      
+      ctx.save();
+      ctx.globalCompositeOperation = 'screen';
+      
+      for (let i = 0; i < lines; i++) {
+        const baseAngle = (i / lines) * Math.PI * 2 + t * 0.1;
+        const scrollWarp = scroll * 2.5;
+        
+        ctx.beginPath();
+        const rStart = 100 + scroll * 100;
+        const rEnd = Math.max(W, H) * 1.5;
+        
+        for (let j = 0; j <= count; j++) {
+          const frac = j / count;
+          const r = rStart + (rEnd - rStart) * frac;
+          // Magnetic curve logic: slightly spiral and warp
+          const angle = baseAngle + Math.sin(frac * Math.PI + t * 0.5) * 0.2 * (1 + scroll * 2) 
+                        + scrollWarp * Math.pow(frac, 0.5);
+          
+          const x = cx + Math.cos(angle) * r;
+          const y = cy + Math.sin(angle) * r;
+          
+          if (j === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+        
+        const opacity = (0.05 + scroll * 0.2) * Math.sin(t * 0.5 + i);
+        ctx.strokeStyle = i % 2 === 0 ? `rgba(6, 182, 212, ${opacity})` : `rgba(139, 92, 246, ${opacity})`;
+        ctx.lineWidth = 1 + scroll * 3;
+        ctx.stroke();
+      }
+      
+      // Vector field "pins"
+      const gridSize = 60;
+      const cols = Math.ceil(W / gridSize) + 1;
+      const rows = Math.ceil(H / gridSize) + 1;
+      
+      ctx.globalAlpha = 0.1 + scroll * 0.3;
+      for (let x = 0; x < cols; x++) {
+        for (let y = 0; y < rows; y++) {
+          const px = x * gridSize;
+          const py = y * gridSize;
+          const dx = px - cx;
+          const dy = py - cy;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          const angle = Math.atan2(dy, dx);
+          
+          // Rotate based on field density
+          const rotation = angle + (dist / 200) + t * 0.2 + scroll * 5;
+          const len = 10 + scroll * 20;
+          
+          ctx.beginPath();
+          ctx.moveTo(px, py);
+          ctx.lineTo(px + Math.cos(rotation) * len, py + Math.sin(rotation) * len);
+          ctx.strokeStyle = `rgba(147, 197, 253, ${0.1 * (1 - dist / (W * 0.8))})`;
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
+      }
+      
+      ctx.restore();
+    };
 
     const draw = () => {
       const W = canvas.width;
@@ -280,6 +350,10 @@ export function useHeroCanvas(
       else flickerOpacity += (1 - flickerOpacity) * 0.2;
 
       ctx.globalAlpha = flickerOpacity;
+
+      const scroll = scrollRef.current || 0;
+      
+      drawMagneticField(W, H, scroll);
 
       beamsRef.current.forEach(beam => drawBeam(beam, cx, cy));
 
@@ -417,7 +491,7 @@ export function useHeroCanvas(
 
     raf = requestAnimationFrame(draw);
     return () => { cancelAnimationFrame(raf); window.removeEventListener('resize', resize); };
-  }, [canvasRef, beamsRef, onBeamHover]);
+  }, [canvasRef, beamsRef, onBeamHover, scrollRef]);
 }
 
 interface TooltipState {
@@ -524,8 +598,7 @@ function GlitchOverlay() {
     </div>
   );
 }
-
-export default function HeroScene() {
+export default function HeroScene({ scrollRef }: { scrollRef: React.RefObject<number> }) {
   const canvasRef  = useRef<HTMLCanvasElement>(null);
   const beamsRef   = useRef<Beam[]>([]);
   const [tooltip, setTooltip] = useState<TooltipState | null>(null);
@@ -534,7 +607,7 @@ export default function HeroScene() {
     setTooltip(beam ? { beam, x: mx, y: my } : null);
   }, []);
 
-  useHeroCanvas(canvasRef, beamsRef, onBeamHover);
+  useHeroCanvas(canvasRef, beamsRef, onBeamHover, scrollRef);
 
   const handleMouseMove = useCallback((e: React.MouseEvent) => {
     const canvas = canvasRef.current;
