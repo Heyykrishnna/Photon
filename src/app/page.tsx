@@ -74,10 +74,41 @@ export default function Home() {
       }, 100);
     };
 
+    // Touch drag handler for mobile/tablet
+    let touchStartY = 0;
+    const handleTouchStart = (e: TouchEvent) => {
+      touchStartY = e.touches[0].clientY;
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      const touchCurrentY = e.touches[0].clientY;
+      const dragDelta = touchStartY - touchCurrentY; // Positive when dragging down
+      
+      if (dragDelta !== 0) {
+        e.preventDefault();
+        const speed = 0.001;
+        targetZoom.current = Math.max(0, Math.min(1, targetZoom.current + (dragDelta * speed)));
+        
+        if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
+        
+        scrollTimeout.current = setTimeout(() => {
+          if (targetZoom.current > 0.35) {
+            targetZoom.current = 1;
+          } else {
+            targetZoom.current = 0;
+          }
+        }, 100);
+      }
+    };
+
     window.addEventListener('wheel', handleWheel, { passive: false });
+    window.addEventListener('touchstart', handleTouchStart, { passive: true });
+    window.addEventListener('touchmove', handleTouchMove, { passive: false });
 
     return () => {
       window.removeEventListener('wheel', handleWheel);
+      window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchmove', handleTouchMove);
     };
   }, []);
 
@@ -99,7 +130,8 @@ export default function Home() {
 
       <div 
         ref={containerRef}
-        className="fixed inset-0 w-full h-full flex bg-black overflow-hidden selection:bg-cyan-500/30 selection:text-white"
+        className="fixed inset-0 w-full h-full flex bg-black overflow-hidden  overscroll-none selection:bg-cyan-500/30 selection:text-white"
+        style={{ touchAction: "none" }}
       >
       <BackgroundVideo 
         src="https://rishihoodmarketingimg.s3.ap-south-1.amazonaws.com/Neutron+ORG/Neutron.mp4" 
@@ -116,9 +148,9 @@ export default function Home() {
         <div className="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.1)_50%),linear-gradient(90deg,rgba(255,0,0,0.03),rgba(0,255,0,0.01),rgba(0,0,255,0.03))] bg-size-[100%_4px,3px_100%] pointer-events-none opacity-30"></div>
       </div>
 
-      <main className="relative z-10 w-full min-h-screen pointer-events-none">
+      <main className="relative z-10 w-full h-full pointer-events-none overflow-hidden">
         
-        <div className="absolute -left-10 md:left-20 -bottom-10 md:bottom-0 w-[110vw] md:w-[20vw] max-w-[1100px] pointer-events-auto z-50">
+        <div className="absolute -left-10 md:left-20 -bottom-10 md:bottom-0 w-[110vw] md:w-[20vw] max-w-275 pointer-events-auto z-50">
           <Image 
             width={2000}
             height={2000} 
@@ -131,7 +163,7 @@ export default function Home() {
 
 
 
-        <div className="absolute bottom-0 right-0 w-full max-w-[1000px] pointer-events-auto">
+        <div className="absolute bottom-0 right-0 w-full max-w-250 pointer-events-auto">
            <RetroWorkstation />
         </div>
       </main>
@@ -147,6 +179,16 @@ export default function Home() {
       <div className="absolute top-12 right-12 text-[10px] font-mono text-white/10 tracking-widest pointer-events-none uppercase">
         [ SECTOR_7G : DATA_STABLE ]
       </div>
+
+      <style jsx>{`
+        html, body {
+          width: 100vw;
+          height: 100vh;
+          overflow: hidden;
+          overscroll-behavior: none;
+          position: fixed;
+        }
+      `}</style>
 
       <style jsx global>{`
         @keyframes pointing-hand {

@@ -1,14 +1,34 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { CurvedGallery } from "../../components/competitions/curved-gallery";
 import { ChevronLeft, Monitor, Zap, Phone } from "lucide-react";
 import Link from "next/link";
 import GlitchText from "../../components/GlitchText";
 
 export default function CompetitionsPage() {
+  useEffect(() => {
+    // Lock document overflow during page interaction to prevent viewport shift during drag
+    const prevBodyOverflowX = document.body.style.overflowX;
+    const prevHtmlOverflowX = document.documentElement.style.overflowX;
+    const prevBodyOverscrollX = document.body.style.overscrollBehaviorX;
+    const prevHtmlOverscrollX = document.documentElement.style.overscrollBehaviorX;
+
+    document.body.style.overflowX = "hidden";
+    document.documentElement.style.overflowX = "hidden";
+    document.body.style.overscrollBehaviorX = "none";
+    document.documentElement.style.overscrollBehaviorX = "none";
+
+    return () => {
+      document.body.style.overflowX = prevBodyOverflowX;
+      document.documentElement.style.overflowX = prevHtmlOverflowX;
+      document.body.style.overscrollBehaviorX = prevBodyOverscrollX;
+      document.documentElement.style.overscrollBehaviorX = prevHtmlOverscrollX;
+    };
+  }, []);
+
   return (
-    <main className="relative w-full h-screen bg-[#030303] overflow-hidden text-white selection:bg-cyan-500/30">
+    <main className="relative w-full h-screen bg-[#030303] overflow-hidden box-border max-w-[100vw] overscroll-x-none text-white selection:bg-cyan-500/30" style={{ touchAction: "none" }}>
       
       <div className="absolute inset-0 z-0 bg-black overflow-hidden">
         <div 
