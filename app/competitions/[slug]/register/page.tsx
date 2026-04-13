@@ -4,6 +4,7 @@ import { useParams } from "next/navigation";
 import CompetitionRegisterForm from "@/components/CompetitionRegisterForm";
 import { COMPETITIONS_DATA } from "@/data/competition-data";
 
+
 export default function CompetitionRegisterPage() {
   const params = useParams();
   const routeParam = typeof params?.slug === "string" ? params.slug : "";
