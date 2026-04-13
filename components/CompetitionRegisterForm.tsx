@@ -108,6 +108,7 @@ const CheckboxGroup = ({ label, options, value, onChange }: any) => (
 
 export default function CompetitionRegisterForm({ competition }: { competition: CompetitionData }) {
   const [isFormVisible, setIsFormVisible] = useState(false);
+  const [teamSize, setTeamSize] = useState(competition.minTeamSize || 1);
   const [mode, setMode] = useState<"Solo" | "Team">(competition.allowSolo ? "Solo" : "Team");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -122,42 +123,29 @@ export default function CompetitionRegisterForm({ competition }: { competition: 
     course: "",
     enrollmentNumber: "",
     yearOfStudy: "",
-    teammates: mode === "Team" 
-      ? Array(Math.max(0, (competition.minTeamSize || 2) - 1))
-          .fill(null)
-          .map(() => ({ name: "", email: "", contact: "" })) 
-      : []
+    teammates: [] as { name: string; email: string; contact: string }[]
   });
 
-  // Sync teammates when mode changes
+  // Sync mode and teammates with teamSize
   useEffect(() => {
-    if (mode === "Team" && formData.teammates.length === 0) {
-      const initialTeammates = Array(Math.max(1, (competition.minTeamSize || 2) - 1))
+    const newMode = teamSize === 1 ? "Solo" : "Team";
+    setMode(newMode);
+
+    const numTeammatesRequired = teamSize - 1;
+    setFormData(prev => {
+      const updatedTeammates = Array(numTeammatesRequired)
         .fill(null)
-        .map(() => ({ name: "", email: "", contact: "" }));
+        .map((_, i) => prev.teammates[i] || { name: "", email: "", contact: "" });
       
-      setFormData(prev => ({
-        ...prev,
-        teammates: initialTeammates
-      }));
-    }
-  }, [mode, competition.minTeamSize]);
+      return { ...prev, teammates: updatedTeammates };
+    });
+  }, [teamSize]);
 
   const updateFormData = (field: string, value: any) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  const handleAddTeammate = () => {
-    if (formData.teammates.length < competition.maxTeamSize - 1 && formData.teammates.length < 4) {
-      setFormData(prev => ({ ...prev, teammates: [...prev.teammates, { name: "", email: "", contact: "" }] }));
-    }
-  };
 
-  const handleRemoveTeammate = (index: number) => {
-    const updated = [...formData.teammates];
-    updated.splice(index, 1);
-    setFormData(prev => ({ ...prev, teammates: updated }));
-  };
 
   const updateTeammate = (index: number, field: string, value: string) => {
     const updated = [...formData.teammates];
@@ -292,24 +280,23 @@ export default function CompetitionRegisterForm({ competition }: { competition: 
                 </h2>
               </div>
 
-              {!(isSoloOnly || isTeamOnly) && (
-                <div className="flex items-center gap-4 p-1.5 bg-white/5 rounded-2xl backdrop-blur-xl mb-12">
-                  {competition.allowSolo && (
-                    <button
-                      onClick={() => setMode("Solo")}
-                      className={`flex-1 py-3.5 rounded-xl text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-500 ${mode === "Solo" ? "bg-white text-black" : "text-white/20 hover:text-white/40"}`}
-                    >
-                      Solo Registry
-                    </button>
-                  )}
-                  {competition.allowTeam && (
-                    <button
-                      onClick={() => setMode("Team")}
-                      className={`flex-1 py-3.5 rounded-xl text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-500 ${mode === "Team" ? "bg-white text-black" : "text-white/20 hover:text-white/40"}`}
-                    >
-                      Squad Registry
-                    </button>
-                  )}
+              {competition.minTeamSize !== competition.maxTeamSize && (
+                <div className="space-y-4">
+                  <label className="text-[10px] uppercase font-black tracking-[0.4em] text-white/30 block text-center">Unit Deployment Configuration</label>
+                  <div className="flex items-center gap-4 p-1.5 bg-white/5 rounded-2xl backdrop-blur-xl mb-12">
+                    {Array.from({ length: (competition.maxTeamSize || 1) - (competition.minTeamSize || 1) + 1 }, (_, i) => i + (competition.minTeamSize || 1))
+                      .map(size => (
+                        <button
+                          key={size}
+                          type="button"
+                          onClick={() => setTeamSize(size)}
+                          className={`flex-1 py-3.5 rounded-xl text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-500 ${teamSize === size ? "bg-white text-black" : "text-white/20 hover:text-white/40"}`}
+                        >
+                          {size === 1 ? "Solo" : `${size} Units`}
+                        </button>
+                      ))
+                    }
+                  </div>
                 </div>
               )}
 
@@ -417,13 +404,6 @@ export default function CompetitionRegisterForm({ competition }: { competition: 
                           <div key={idx} className="p-10 bg-white/[0.01] border border-white/5 rounded-[40px] space-y-8 relative group">
                             <div className="flex items-center justify-between">
                               <h4 className="text-[10px] font-black uppercase tracking-[0.5em] text-white/20 italic">Member 0{idx + 2}</h4>
-                              <button 
-                                type="button" 
-                                onClick={() => handleRemoveTeammate(idx)}
-                                className="p-2.5 hover:bg-red-500/10 rounded-xl transition-all text-white/10 hover:text-red-500 active:scale-90"
-                              >
-                                <X size={14} />
-                              </button>
                             </div>
 
                             <div className="space-y-8">
@@ -455,16 +435,7 @@ export default function CompetitionRegisterForm({ competition }: { competition: 
                           </div>
                         ))}
 
-                        {formData.teammates.length < competition.maxTeamSize - 1 && formData.teammates.length < 4 && (
-                          <button 
-                            type="button" 
-                            onClick={handleAddTeammate}
-                            className="w-full py-10 rounded-[40px] text-[10px] uppercase font-black tracking-[0.5em] text-white/10 hover:text-white hover:bg-white/[0.03] transition-all border border-dashed border-white/5 group flex items-center justify-center gap-4"
-                          >
-                            <Plus size={14} className="group-hover:rotate-90 transition-transform duration-500" />
-                            Add Member 0{formData.teammates.length + 2}
-                          </button>
-                        )}
+
                       </div>
                     </div>
                   </div>

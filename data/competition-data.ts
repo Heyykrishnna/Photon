@@ -212,7 +212,7 @@ export const COMPETITIONS_DATA: Competition[] = [
     description: "Optimize and deploy cutting-edge LLMs on edge devices with computational constraints. Create efficient AI solutions that work anywhere.",
     prizePool: "$12,500",
     location: "Rishihood Campus",
-    teamSize: "Solo / Duo",
+    teamSize: "1-2",
     rules: [
       {
         title: "Model Requirements",
@@ -290,7 +290,7 @@ export const COMPETITIONS_DATA: Competition[] = [
     description: "A high-pressure 1v1 coding arena where competitors face identical problems and race against each other under strict time limits.",
     prizePool: "₹7,500",
     location: "Tech Arena",
-    teamSize: "Solo",
+    teamSize: "1",
     rules: [
       {
         title: "Format",
@@ -329,7 +329,7 @@ export const COMPETITIONS_DATA: Competition[] = [
     description: "Fast-paced kart combat where players balance speed, weapon pickups, map control, and survival tactics to dominate the arena.",
     prizePool: "₹4,000",
     location: "Gaming Zone",
-    teamSize: "Solo",
+    teamSize: "1",
     rules: [
       {
         title: "Match Type",
@@ -368,7 +368,7 @@ export const COMPETITIONS_DATA: Competition[] = [
     description: "Participants compete in tactical Clash Royale sets requiring deck mastery, quick adaptation, and precision timing under live pressure.",
     prizePool: "₹5,000",
     location: "Esports Bay",
-    teamSize: "Solo",
+    teamSize: "1",
     rules: [
       {
         title: "Bracket",
@@ -407,7 +407,7 @@ export const COMPETITIONS_DATA: Competition[] = [
     description: "Teams and solo players enter BGMI custom lobbies to earn points through placement, eliminations, and strategic rotations across multiple matches.",
     prizePool: "₹10,000",
     location: "Main Arena",
-    teamSize: "Solo / Team",
+    teamSize: "1 - 6",
     rules: [
       {
         title: "Lobby Setup",
@@ -524,7 +524,7 @@ export const COMPETITIONS_DATA: Competition[] = [
     description: "Engineer innovative solutions for sustainable living in solar-powered habitats. Focus on efficiency, sustainability, and practical impact.",
     prizePool: "$10,000",
     location: "Remote HQ",
-    teamSize: "Solo / Team",
+    teamSize: "1-4",
     rules: [
       {
         title: "Sustainability Focus",

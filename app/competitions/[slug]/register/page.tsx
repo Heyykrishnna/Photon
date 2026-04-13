@@ -25,22 +25,29 @@ export default function CompetitionRegisterPage() {
   }
 
   const teamSizeStr = competition.teamSize || "";
-  const isSoloOnly = teamSizeStr === "Solo" || teamSizeStr.includes("Solo") && !teamSizeStr.includes("/");
-  const isTeamOnly = !teamSizeStr.includes("Solo") && teamSizeStr !== "Solo / Team";
   
-  // Parse team sizes from teamSize string
-  const parseTeamSize = (str: string) => {
-    if (str === "Solo") return 1;
-    if (str === "Solo / Duo") return 2;
-    if (str === "Solo / Team") return 4;
-    if (str === "Trio Only") return 3;
-    if (str === "Squad (4)") return 4;
-    if (str.includes("2-6")) return 6;
-    return 1;
+  // Parse team size range from string (e.g., "1-3", "2-6", "Solo", "1")
+  const parseTeamSizeRange = (str: string) => {
+    const digits = str.match(/\d+/g);
+    if (!digits) {
+      const lower = str.toLowerCase();
+      if (lower.includes("solo")) return { min: 1, max: 1 };
+      if (lower.includes("duo")) return { min: 2, max: 2 };
+      if (lower.includes("trio")) return { min: 3, max: 3 };
+      if (lower.includes("squad")) return { min: 4, max: 4 };
+      return { min: 1, max: 1 };
+    }
+    
+    const nums = digits.map(d => parseInt(d));
+    if (nums.length >= 2) {
+      return { min: Math.min(...nums), max: Math.max(...nums) };
+    }
+    return { min: nums[0], max: nums[0] };
   };
 
-  const maxTeamSize = parseTeamSize(teamSizeStr);
-  const minTeamSize = isSoloOnly ? 1 : (isTeamOnly ? 2 : 1);
+  const { min: minTeamSize, max: maxTeamSize } = parseTeamSizeRange(teamSizeStr);
+  const allowSolo = minTeamSize === 1;
+  const allowTeam = maxTeamSize > 1;
 
   return (
     <CompetitionRegisterForm 
@@ -48,10 +55,10 @@ export default function CompetitionRegisterPage() {
         id: competition.slug,
         name: competition.title,
         slug: routeParam,
-        allowTeam: !isSoloOnly,
+        allowTeam: allowTeam,
         maxTeamSize: maxTeamSize,
         minTeamSize: minTeamSize,
-        allowSolo: !isTeamOnly
+        allowSolo: allowSolo
       }} 
     />
   );
