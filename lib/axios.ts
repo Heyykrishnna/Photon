@@ -60,6 +60,7 @@ const PUBLIC_PATHS = [
   "/auth/invite/accept",
   "/competitions",
   "/competitions/:id",
+  "/registration/competition/",
   "",
 ];
 
@@ -109,15 +110,26 @@ const ensureSocketAccessForProtectedRequest = async (): Promise<boolean> => {
 
 // Queue for managing concurrent refresh requests
 let refreshPromise: Promise<any> | null = null;
-const pendingRequests: Array<() => void> = [];
+const pendingRequests: Array<{
+  onSuccess: () => void;
+  onFailure: (error: unknown) => void;
+}> = [];
 
 const onRefreshed = (): void => {
-  pendingRequests.forEach((callback) => callback());
+  pendingRequests.forEach(({ onSuccess }) => onSuccess());
   pendingRequests.length = 0;
 };
 
-const addPendingRequest = (callback: () => void): void => {
-  pendingRequests.push(callback);
+const onRefreshFailed = (error: unknown): void => {
+  pendingRequests.forEach(({ onFailure }) => onFailure(error));
+  pendingRequests.length = 0;
+};
+
+const addPendingRequest = (
+  onSuccess: () => void,
+  onFailure: (error: unknown) => void,
+): void => {
+  pendingRequests.push({ onSuccess, onFailure });
 };
 
 // Create axios instance with default config
@@ -181,11 +193,14 @@ apiClient.interceptors.response.use(
       // If already refreshing, wait for the refresh to complete
       if (refreshPromise) {
         return new Promise((resolve, reject) => {
-          addPendingRequest(() => {
-            resolve(apiClient(originalRequest));
-          });
-        }).catch(() => {
-          return Promise.reject(error);
+          addPendingRequest(
+            () => {
+              resolve(apiClient(originalRequest));
+            },
+            (refreshError) => {
+              reject(refreshError);
+            },
+          );
         });
       }
 
@@ -199,6 +214,7 @@ apiClient.interceptors.response.use(
         })
         .catch((refreshError: unknown) => {
           refreshPromise = null;
+          onRefreshFailed(refreshError);
           if (isExplicitAuthRejection(refreshError)) {
             disconnectSocket();
             emitServerRejectedAuth();
