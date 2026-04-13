@@ -10,7 +10,7 @@ export function SearchBar({
   debounceMs = 300,
   fullWidth = false,
   sx = {},
-}:any) {
+}: any) {
   const [searchValue, setSearchValue] = useState("");
 
   useEffect(() => {
@@ -28,12 +28,14 @@ export function SearchBar({
       onChange={(e) => setSearchValue(e.target.value)}
       placeholder={placeholder}
       size="small"
-      InputProps={{
-        startAdornment: (
-          <InputAdornment position="start">
-            <Search size={20} />
-          </InputAdornment>
-        ),
+      slotProps={{
+        input: {
+          startAdornment: (
+            <InputAdornment position="start">
+              <Search size={20} />
+            </InputAdornment>
+          ),
+        },
       }}
       sx={sx}
     />

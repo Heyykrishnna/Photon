@@ -138,12 +138,14 @@ export default function PromoCodeApprovalModal({
       onClose={onClose}
       maxWidth="sm"
       fullWidth
-      PaperProps={{
-        sx: {
-          background: "#0e0e0e",
-          border: "1px solid rgba(255,255,255,0.08)",
-          borderRadius: "14px",
-          boxShadow: "0 24px 64px rgba(0,0,0,0.7)",
+      slotProps={{
+        paper: {
+          sx: {
+            background: "#0e0e0e",
+            border: "1px solid rgba(255,255,255,0.08)",
+            borderRadius: "14px",
+            boxShadow: "0 24px 64px rgba(0,0,0,0.7)",
+          },
         },
       }}
     >
@@ -310,13 +312,15 @@ export default function PromoCodeApprovalModal({
                 })
               }
               disabled={isPending}
-              inputProps={{
-                step: currentCode.discountType === "PERCENT" ? 1 : 10,
-                min: 0,
-                max:
-                  currentCode.discountType === "PERCENT"
-                    ? 100
-                    : registrationFee || 10000,
+              slotProps={{
+                htmlInput: {
+                  step: currentCode.discountType === "PERCENT" ? 1 : 10,
+                  min: 0,
+                  max:
+                    currentCode.discountType === "PERCENT"
+                      ? 100
+                      : registrationFee || 10000,
+                },
               }}
               sx={{
                 "& .MuiOutlinedInput-root": {

@@ -67,12 +67,14 @@ export function ConfirmDialog({
       onClose={loading ? undefined : onClose}
       maxWidth="sm"
       fullWidth
-      PaperProps={{
-        sx: {
-          background: "#0e0e0e",
-          border: "1px solid rgba(255,255,255,0.08)",
-          borderRadius: "16px",
-          boxShadow: "0 32px 80px rgba(0,0,0,0.8)",
+      slotProps={{
+        paper: {
+          sx: {
+            background: "#0e0e0e",
+            border: "1px solid rgba(255,255,255,0.08)",
+            borderRadius: "16px",
+            boxShadow: "0 32px 80px rgba(0,0,0,0.8)",
+          },
         },
       }}
     >

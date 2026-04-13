@@ -11,6 +11,7 @@ import {
   Divider,
   CircularProgress,
   Alert,
+  InputAdornment,
 } from "@mui/material";
 import { Mail, Lock, ArrowRight } from "lucide-react";
 
@@ -129,17 +130,20 @@ export function LoginForm({ onSubmit, loading, error, onGoogleLogin }: any) {
             error={!!errors.email}
             helperText={errors.email?.message}
             disabled={loading}
-            InputProps={{
-              startAdornment: (
-                <Mail
-                  size={15}
-                  style={{
-                    marginRight: 10,
-                    color: "rgba(120,160,255,0.5)",
-                    flexShrink: 0,
-                  }}
-                />
-              ),
+            slotProps={{
+              input: {
+                startAdornment: (
+                  <InputAdornment position="start" sx={{ mr: 0.5 }}>
+                    <Mail
+                      size={15}
+                      style={{
+                        color: "rgba(120,160,255,0.5)",
+                        flexShrink: 0,
+                      }}
+                    />
+                  </InputAdornment>
+                ),
+              },
             }}
             sx={fieldSx}
           />
@@ -158,17 +162,20 @@ export function LoginForm({ onSubmit, loading, error, onGoogleLogin }: any) {
             error={!!errors.password}
             helperText={errors.password?.message}
             disabled={loading}
-            InputProps={{
-              startAdornment: (
-                <Lock
-                  size={15}
-                  style={{
-                    marginRight: 10,
-                    color: "rgba(120,160,255,0.5)",
-                    flexShrink: 0,
-                  }}
-                />
-              ),
+            slotProps={{
+              input: {
+                startAdornment: (
+                  <InputAdornment position="start" sx={{ mr: 0.5 }}>
+                    <Lock
+                      size={15}
+                      style={{
+                        color: "rgba(120,160,255,0.5)",
+                        flexShrink: 0,
+                      }}
+                    />
+                  </InputAdornment>
+                ),
+              },
             }}
             sx={{ ...fieldSx, mb: 3.5 }}
           />

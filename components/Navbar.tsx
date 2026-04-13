@@ -17,11 +17,28 @@ export default function Navbar() {
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
 
   const links = [
-    { name: "Competitions", href: "/competitions", image: "https://ik.imagekit.io/yatharth/ARS03046%20(1).jpg" },
-    { name: "Events", href: "/events", image: "https://ik.imagekit.io/yatharth/ARS03000.JPG" },
-    { name: "About Us", href: "/about", image: "https://ik.imagekit.io/yatharth/ARS06750.JPG?updatedAt=1774806404575" },
-    { name: "Contact", href: "/contact", image: "https://ik.imagekit.io/yatharth/BANNER.jpeg?updatedAt=1774963679610" },
-    { name: "Profile", href: "/profile", image: "https://wallpapercave.com/wp/wp15796233.jpg" },
+    {
+      name: "Competitions",
+      href: "/competitions",
+      image: "https://ik.imagekit.io/yatharth/ARS03046%20(1).jpg",
+    },
+    {
+      name: "Events",
+      href: "/events",
+      image: "https://ik.imagekit.io/yatharth/ARS03000.JPG",
+    },
+    {
+      name: "About Us",
+      href: "/about",
+      image:
+        "https://ik.imagekit.io/yatharth/ARS06750.JPG?updatedAt=1774806404575",
+    },
+    {
+      name: "Contact",
+      href: "/contact",
+      image:
+        "https://ik.imagekit.io/yatharth/BANNER.jpeg?updatedAt=1774963679610",
+    },
   ];
 
   const secondaryLinks = [
@@ -81,21 +98,21 @@ export default function Navbar() {
             transition={{ duration: 0.4 }}
             className="fixed inset-0 z-400 bg-[#030303]/98 backdrop-blur-3xl overflow-hidden flex flex-col lg:flex-row"
           >
-            <div 
+            <div
               className="absolute inset-0 pointer-events-none opacity-5"
               style={{
                 backgroundImage: `
                   linear-gradient(to right, rgba(255,255,255,0.1) 1px, transparent 1px),
                   linear-gradient(to bottom, rgba(255,255,255,0.1) 1px, transparent 1px)
                 `,
-                backgroundSize: '40px 40px',
+                backgroundSize: "40px 40px",
               }}
             />
 
             <div className="hidden lg:block lg:flex-[0.6] relative bg-[#050505] overflow-hidden border-r border-white/10">
               <AnimatePresence mode="wait">
                 <motion.div
-                  key={activeCategory || 'default'}
+                  key={activeCategory || "default"}
                   initial={{ opacity: 0, scale: 1.05 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 1.05 }}
@@ -104,40 +121,46 @@ export default function Navbar() {
                 >
                   {activeCategory ? (
                     <>
-                      <img 
-                        src={links.find(l => l.name === activeCategory)?.image} 
+                      <img
+                        src={
+                          links.find((l) => l.name === activeCategory)?.image
+                        }
                         alt={activeCategory}
                         className="w-full h-full object-cover opacity-60 grayscale-[0.3] brightness-75"
                       />
                       <div className="absolute inset-0 bg-linear-to-l from-[#030303] via-transparent to-transparent" />
                       <div className="absolute bottom-20 right-20 z-20 text-right">
-                          <motion.p 
-                            initial={{ y: 20, opacity: 0 }}
-                            animate={{ y: 0, opacity: 1 }}
-                            className="text-[10px] font-mono text-cyan-500 uppercase tracking-[0.5em] mb-4"
-                          >
-                            Sector Visualization
-                          </motion.p>
-                          <motion.h3 
-                            initial={{ y: 20, opacity: 0 }}
-                            animate={{ y: 0, opacity: 1 }}
-                            transition={{ delay: 0.1 }}
-                            className="text-6xl font-black text-white italic tracking-tighter"
-                          >
-                            {activeCategory}
-                          </motion.h3>
+                        <motion.p
+                          initial={{ y: 20, opacity: 0 }}
+                          animate={{ y: 0, opacity: 1 }}
+                          className="text-[10px] font-mono text-cyan-500 uppercase tracking-[0.5em] mb-4"
+                        >
+                          Sector Visualization
+                        </motion.p>
+                        <motion.h3
+                          initial={{ y: 20, opacity: 0 }}
+                          animate={{ y: 0, opacity: 1 }}
+                          transition={{ delay: 0.1 }}
+                          className="text-6xl font-black text-white italic tracking-tighter"
+                        >
+                          {activeCategory}
+                        </motion.h3>
                       </div>
                     </>
                   ) : (
                     <div className="w-full h-full flex items-center justify-center relative">
-                        <motion.div
-                          animate={{ y: ["-100%", "200%"] }}
-                          transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
-                          className="absolute left-0 right-0 h-[3px] bg-cyan-500/10 shadow-[0_0_20px_rgba(6,182,212,0.4)] z-20 pointer-events-none"
-                        />
-                        <span className="font-audiowide text-white/5 text-[12vw] italic select-none">
-                          PHOTON
-                        </span>
+                      <motion.div
+                        animate={{ y: ["-100%", "200%"] }}
+                        transition={{
+                          duration: 6,
+                          repeat: Infinity,
+                          ease: "linear",
+                        }}
+                        className="absolute left-0 right-0 h-[3px] bg-cyan-500/10 shadow-[0_0_20px_rgba(6,182,212,0.4)] z-20 pointer-events-none"
+                      />
+                      <span className="font-audiowide text-white/5 text-[12vw] italic select-none">
+                        PHOTON
+                      </span>
                     </div>
                   )}
                 </motion.div>
@@ -145,27 +168,26 @@ export default function Navbar() {
             </div>
 
             <div className="flex-1 lg:flex-[0.4] flex flex-col relative z-20 h-full overflow-y-auto">
-              
               <div className="absolute inset-0 pointer-events-none overflow-hidden select-none opacity-40">
                 {[
                   "iℏ ∂ψ/∂t = [-ℏ²/2m ∇² + V(r)]ψ",
                   "E = hν = ℏω = pc",
                   "Δx · Δpₓ ≥ ℏ/2",
                   "(iγᵘ∂ᵤ - mc/ℏ)ψ = 0",
-                  "λ = h / mv"
+                  "λ = h / mv",
                 ].map((eq, i) => (
                   <motion.div
                     key={i}
                     initial={{ opacity: 0 }}
-                    animate={{ 
+                    animate={{
                       opacity: [0.05, 0.1, 0.05],
                       x: [0, 10, 0],
-                      y: [0, 10, 0]
+                      y: [0, 10, 0],
                     }}
-                    transition={{ 
-                      duration: 10 + i * 2, 
-                      repeat: Infinity, 
-                      ease: "linear" 
+                    transition={{
+                      duration: 10 + i * 2,
+                      repeat: Infinity,
+                      ease: "linear",
                     }}
                     className="absolute text-[10px] font-mono text-cyan-400/20 whitespace-nowrap"
                     style={{
@@ -179,7 +201,7 @@ export default function Navbar() {
               </div>
 
               <div className="w-full flex items-center justify-between px-8 py-10">
-                <div className="w-12 lg:hidden" /> 
+                <div className="w-12 lg:hidden" />
                 <span className="font-audiowide text-[1.2rem] italic font-black tracking-wider text-white lg:absolute lg:left-1/2 lg:-translate-x-1/2">
                   PHOTON
                 </span>
@@ -209,25 +231,27 @@ export default function Navbar() {
                         <span className="text-3xl sm:text-5xl font-black text-white group-hover:text-cyan-400 transition-all duration-300 tracking-tight font-orbitron italic uppercase leading-none">
                           {link.name}
                         </span>
-                        <motion.div 
-                          className="w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-cyan-500 group-hover:border-cyan-500 transition-all duration-300 overflow-hidden"
-                        >
+                        <motion.div className="w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-cyan-500 group-hover:border-cyan-500 transition-all duration-300 overflow-hidden">
                           <motion.div
                             initial={{ x: -20, opacity: 0 }}
                             whileHover={{ x: 0, opacity: 1 }}
-                            animate={activeCategory === link.name ? { x: 0, opacity: 1 } : { x: -20, opacity: 0 }}
+                            animate={
+                              activeCategory === link.name
+                                ? { x: 0, opacity: 1 }
+                                : { x: -20, opacity: 0 }
+                            }
                             transition={{ duration: 0.3, ease: "easeOut" }}
                             className="flex items-center justify-center"
                           >
-                            <svg 
-                              width="24" 
-                              height="24" 
-                              viewBox="0 0 24 24" 
-                              fill="none" 
-                              stroke="currentColor" 
-                              strokeWidth="3" 
-                              strokeLinecap="round" 
-                              strokeLinejoin="round" 
+                            <svg
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="3"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
                               className="text-white sm:w-8 sm:h-8"
                             >
                               <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -246,9 +270,18 @@ export default function Navbar() {
                     Social Matrix
                   </span>
                   <div className="flex items-center gap-6">
-                    <FaSquareXTwitter size={18} className="text-white/40 hover:text-cyan-400 transition-all duration-300 cursor-pointer" />
-                    <FaInstagram size={18} className="text-white/40 hover:text-cyan-400 transition-all duration-300 cursor-pointer" />
-                    <FaLinkedin size={18} className="text-white/40 hover:text-cyan-400 transition-all duration-300 cursor-pointer" />
+                    <FaSquareXTwitter
+                      size={18}
+                      className="text-white/40 hover:text-cyan-400 transition-all duration-300 cursor-pointer"
+                    />
+                    <FaInstagram
+                      size={18}
+                      className="text-white/40 hover:text-cyan-400 transition-all duration-300 cursor-pointer"
+                    />
+                    <FaLinkedin
+                      size={18}
+                      className="text-white/40 hover:text-cyan-400 transition-all duration-300 cursor-pointer"
+                    />
                   </div>
                 </div>
               </div>

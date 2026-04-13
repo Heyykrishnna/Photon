@@ -927,17 +927,19 @@ export default function CompetitionFormModal({
       onClose={closeModal}
       maxWidth="lg"
       fullWidth
-      PaperProps={{
-        sx: {
-          background: "#0e0e0e",
-          border: "1px solid rgba(255,255,255,0.07)",
-          borderRadius: "16px",
-          boxShadow: "0 32px 80px rgba(0,0,0,0.75)",
-          overflow: "hidden",
-          height: "90vh",
-          maxHeight: "90vh",
-          display: "flex",
-          flexDirection: "column",
+      slotProps={{
+        paper: {
+          sx: {
+            background: "#0e0e0e",
+            border: "1px solid rgba(255,255,255,0.07)",
+            borderRadius: "16px",
+            boxShadow: "0 32px 80px rgba(0,0,0,0.75)",
+            overflow: "hidden",
+            height: "90vh",
+            maxHeight: "90vh",
+            display: "flex",
+            flexDirection: "column",
+          },
         },
       }}
     >
