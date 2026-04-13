@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { CurvedGallery } from "@/components/events/curved-gallery";
+import { CurvedGallery } from "@/components/competitions/curved-gallery";
 
 export default function EventsPage() {
   useEffect(() => {

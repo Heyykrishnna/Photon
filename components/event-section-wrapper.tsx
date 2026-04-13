@@ -8,14 +8,27 @@ import { StickyScrollCards } from "./sticky-scroll-cards";
 import ScrollReveal from "./ScrollReveal";
 import RulesSection from "./rules-section";
 import { MobileStackedCards } from "./mobile-stacked-cards";
-import { EventRecord } from "@/lib/events-data";
 import { SectionTransition } from "./section-transition";
+
+type EventRecord = {
+  date: string;
+  title: string;
+  category: string;
+  teamSize: string;
+  status: string;
+  slug: string;
+  about: string;
+  rules: string[] | string;
+  prizePool: string;
+  location: string;
+  eventType: string;
+};
 
 export default function EventSectionWrapper({ event }: { event: EventRecord }) {
   const targetRef = React.useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: targetRef,
-    offset: ["start start", "end end"]
+    offset: ["start start", "end end"],
   });
 
   const [isMobile, setIsMobile] = React.useState(false);
@@ -36,12 +49,14 @@ export default function EventSectionWrapper({ event }: { event: EventRecord }) {
     <div className="flex flex-col space-y-32">
       <SectionTransition className="relative group/header">
         <div className="absolute -inset-x-24 -top-48 -bottom-24 z-0 pointer-events-none overflow-hidden">
-          <div 
+          <div
             className="absolute inset-0 bg-cover bg-center scale-110 opacity-40 mix-blend-screen animate-[slow-pan_40s_linear_infinite_alternate]"
-            style={{ 
+            style={{
               backgroundImage: `url('https://wallpapercave.com/wp/wp3837811.jpg')`,
-              maskImage: 'linear-gradient(to bottom, black 0%, black 60%, transparent 100%)',
-              WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 60%, transparent 100%)',
+              maskImage:
+                "linear-gradient(to bottom, black 0%, black 60%, transparent 100%)",
+              WebkitMaskImage:
+                "linear-gradient(to bottom, black 0%, black 60%, transparent 100%)",
             }}
           />
           <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent z-10"></div>
@@ -51,15 +66,17 @@ export default function EventSectionWrapper({ event }: { event: EventRecord }) {
         <div className="relative z-10 max-w-[1400px] pt-40 md:pt-60">
           <div className="flex items-center space-x-4 mb-8 md:mb-12 overflow-hidden">
             <div className="h-px w-12 bg-white/20"></div>
-            <span className="text-white/70 font-mono text-xs tracking-widest uppercase">{event.date}</span>
+            <span className="text-white/70 font-mono text-xs tracking-widest uppercase">
+              {event.date}
+            </span>
           </div>
 
-          <BlurHeading 
-            text={event.title} 
+          <BlurHeading
+            text={event.title}
             className="text-5xl md:text-9xl lg:text-[10rem] font-bold tracking-tighter leading-[0.8] mb-16 md:mb-12 uppercase"
             spanClassName="bg-clip-text text-transparent bg-linear-to-b from-white via-white to-white/20 drop-shadow-[0_10px_30px_rgba(255,255,255,0.1)]"
           />
-          
+
           <div className="relative w-full group pt-4">
             {/* <div className="absolute -left-6 top-0 bottom-0 w-[2px] bg-white/10 transition-all duration-700"></div> */}
             <div className="pl-0 md:pl-8 flex flex-col md:flex-row md:items-center justify-between gap-6 w-full">
@@ -100,89 +117,104 @@ export default function EventSectionWrapper({ event }: { event: EventRecord }) {
         <div className="relative lg:sticky lg:top-0 lg:h-screen flex items-center">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 w-full items-start">
             <div className="relative h-auto lg:h-screen px-4 py-12 md:py-32 overflow-hidden">
-               <motion.div 
-                 style={{ 
-                   y: isMobile ? 0 : yPos,
-                   opacity: isMobile ? 1 : opacityVal
-                 }}
-                 className="flex flex-col space-y-12"
-               >
+              <motion.div
+                style={{
+                  y: isMobile ? 0 : yPos,
+                  opacity: isMobile ? 1 : opacityVal,
+                }}
+                className="flex flex-col space-y-12"
+              >
                 <div className="flex items-center space-x-4 mb-8">
-                   <div className="w-12 h-px bg-white"></div>
-                   <h2 className="text-3xl tracking-wide uppercase font-semibold text-white/90">Mission Briefing</h2>
+                  <div className="w-12 h-px bg-white"></div>
+                  <h2 className="text-3xl tracking-wide uppercase font-semibold text-white/90">
+                    Mission Briefing
+                  </h2>
                 </div>
                 <div className="flex flex-col space-y-12 pr-12">
-                   <ScrollReveal
-                     baseOpacity={0}
-                     blurStrength={10}
-                     textClassName="text-xl md:text-2xl font-light leading-relaxed text-white/80"
-                     containerClassName="mb-8"
-                   >
-                     {event.about}
-                   </ScrollReveal>
+                  <ScrollReveal
+                    baseOpacity={0}
+                    blurStrength={10}
+                    textClassName="text-xl md:text-2xl font-light leading-relaxed text-white/80"
+                    containerClassName="mb-8"
+                  >
+                    {event.about}
+                  </ScrollReveal>
 
-                   <br/>
-                   <br/>
+                  <br />
+                  <br />
 
-                   <ScrollReveal
-                     baseOpacity={0}
-                     blurStrength={10}
-                     textClassName="text-lg md:text-xl font-light leading-relaxed text-white/60"
-                   >
-                     As you venture deeper into the mission parameters, the gravity of the challenge becomes clear. Every decision counts, every calculation matters. We are looking for the elite, those who can survive the vacuum of space and the isolation of distant worlds.
-                   </ScrollReveal>
+                  <ScrollReveal
+                    baseOpacity={0}
+                    blurStrength={10}
+                    textClassName="text-lg md:text-xl font-light leading-relaxed text-white/60"
+                  >
+                    As you venture deeper into the mission parameters, the
+                    gravity of the challenge becomes clear. Every decision
+                    counts, every calculation matters. We are looking for the
+                    elite, those who can survive the vacuum of space and the
+                    isolation of distant worlds.
+                  </ScrollReveal>
 
-                   <ScrollReveal
-                     baseOpacity={0}
-                     blurStrength={10}
-                     textClassName="text-lg md:text-xl font-light leading-relaxed text-white/40"
-                   >
-                     The mission lifecycle demands endurance and high cognitive function. You will be pushed to your limits, but the data harvested will pave the way for future generations. Prepare for launch sequence initiation.
-                   </ScrollReveal>
+                  <ScrollReveal
+                    baseOpacity={0}
+                    blurStrength={10}
+                    textClassName="text-lg md:text-xl font-light leading-relaxed text-white/40"
+                  >
+                    The mission lifecycle demands endurance and high cognitive
+                    function. You will be pushed to your limits, but the data
+                    harvested will pave the way for future generations. Prepare
+                    for launch sequence initiation.
+                  </ScrollReveal>
 
-                   <div className="pt-12">
-                     <RulesSection rules={event.rules} />
-                   </div>
+                  <div className="pt-12">
+                    <RulesSection rules={event.rules} />
+                  </div>
 
-                   <p className="opacity-30 italic font-mono text-xs tracking-[0.3em] pt-12 uppercase border-t border-white/5">
-                     End of Briefing • Awaiting Commander Input
-                   </p>
+                  <p className="opacity-30 italic font-mono text-xs tracking-[0.3em] pt-12 uppercase border-t border-white/5">
+                    End of Briefing • Awaiting Commander Input
+                  </p>
                 </div>
-               </motion.div>
-               
-               <motion.div
-                 style={{ 
-                   opacity: isMobile ? 0.2 : dataOpacity,
-                   y: isMobile ? 0 : dataY
-                 }}
-                 className="absolute inset-x-0 bottom-24 flex items-center justify-start px-4 text-white/20 pointer-events-none"
-               >
-                 <div className="flex flex-col space-y-4">
-                   <div className="text-8xl font-black uppercase tracking-tighter opacity-10">Data</div>
-                   <div className="text-8xl font-black uppercase tracking-tighter opacity-10 leading-[0.8]">Analysis</div>
-                   <div className="text-xs font-mono uppercase tracking-[0.4em] pt-8">System Syncing... Keep Scrolling</div>
-                 </div>
-               </motion.div>
+              </motion.div>
+
+              <motion.div
+                style={{
+                  opacity: isMobile ? 0.2 : dataOpacity,
+                  y: isMobile ? 0 : dataY,
+                }}
+                className="absolute inset-x-0 bottom-24 flex items-center justify-start px-4 text-white/20 pointer-events-none"
+              >
+                <div className="flex flex-col space-y-4">
+                  <div className="text-8xl font-black uppercase tracking-tighter opacity-10">
+                    Data
+                  </div>
+                  <div className="text-8xl font-black uppercase tracking-tighter opacity-10 leading-[0.8]">
+                    Analysis
+                  </div>
+                  <div className="text-xs font-mono uppercase tracking-[0.4em] pt-8">
+                    System Syncing... Keep Scrolling
+                  </div>
+                </div>
+              </motion.div>
             </div>
 
             <div className="hidden lg:flex flex-col justify-center h-full pr-12">
-               <StickyScrollCards 
-                 progress={scrollYProgress}
-                 prizePool={event.prizePool}
-                 location={event.location}
-                 teamSize={event.teamSize}
-                 competitionTitle={event.title}
-                 category={event.category}
-                 eventType={event.eventType}
-               />
+              <StickyScrollCards
+                progress={scrollYProgress}
+                prizePool={event.prizePool}
+                location={event.location}
+                teamSize={event.teamSize}
+                competitionTitle={event.title}
+                category={event.category}
+                eventType={event.eventType}
+              />
             </div>
 
             <div className="block lg:hidden mt-0">
-               <MobileStackedCards 
-                 prizePool={event.prizePool}
-                 location={event.location}
-                 teamSize={event.teamSize}
-               />
+              <MobileStackedCards
+                prizePool={event.prizePool}
+                location={event.location}
+                teamSize={event.teamSize}
+              />
             </div>
           </div>
         </div>
